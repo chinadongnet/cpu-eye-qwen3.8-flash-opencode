@@ -2,6 +2,8 @@
 
 纯前端（零依赖）CPU 模拟器：把 C++ 子集编译成 **x86 (IA-32) / x86-64 (System V) / ARM32 (AAPCS) / ARM64 (AAPCS64)** 四种架构的汇编，逐指令执行，动态展示寄存器、标志位、栈帧变量、内存（字节级高亮本步变化）、程序输出与当前源码行。
 
+**在线演示**: https://chinadongnet.github.io/cpu-eye-qwen3.8-flash-opencode/
+
 ## 运行 / 部署
 
 任意静态服务器即可（无构建步骤）：
