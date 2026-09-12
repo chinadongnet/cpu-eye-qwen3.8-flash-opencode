@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CPU Eye — C++ 指令级动态模拟器 (x86 / x64 / ARM32 / ARM64)</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="logo">CPU&nbsp;<b>EYE</b> <span class="sub">C++ → 汇编 指令级动态模拟器</span></div>
+  <div class="tabs" id="tabs"></div>
+</header>
+
+<div class="toolbar">
+  <select id="sampleSel"></select>
+  <button id="btnCompile" class="primary">编译</button>
+  <span class="sep"></span>
+  <button id="btnRun" class="run">▶ 运行</button>
+  <button id="btnStep">⏭ 单步</button>
+  <button id="btnBack">⏮ 回退</button>
+  <button id="btnReset">⏹ 重置</button>
+  <span class="sep"></span>
+  <label class="spd">速度 <input type="range" id="speed" min="1" max="60" value="8"> <span id="spdVal">8</span> 步/秒</label>
+  <div class="status" id="statusbar">
+    <span class="chip">PC <b id="stPC">-</b></span>
+    <span class="chip">函数 <b id="stFn">-</b></span>
+    <span class="chip">步数 <b id="stSteps">0</b></span>
+    <span class="chip">标志 <b id="stFlags">Z=0 N=0</b></span>
+    <span class="chip">状态 <b id="stState">待编译</b></span>
+    <span class="chip verify" id="stVerify"></span>
+  </div>
+</div>
+
+<main>
+  <section class="col left">
+    <div class="panel-title">C++ 源码 <small id="sampleDesc" class="dim"></small></div>
+    <textarea id="editor" spellcheck="false"></textarea>
+    <div id="compileErr" class="err hidden"></div>
+    <div class="panel-title">示例（内置验证）</div>
+    <div id="sampleList" class="sample-list"></div>
+  </section>
+
+  <section class="col mid">
+    <div class="panel-title">CPU 结构示意图（随执行动态更新）<small id="isaHint" class="dim"></small></div>
+    <div id="cpu" class="cpu"></div>
+    <div class="panel-title">反汇编 / 当前指令</div>
+    <div id="disasm" class="disasm"></div>
+    <div class="panel-title">程序输出</div>
+    <pre id="console" class="console"></pre>
+  </section>
+
+  <section class="col right">
+    <div class="panel-title">寄存器</div>
+    <div id="regs" class="regs"></div>
+    <div class="panel-title">当前栈帧变量</div>
+    <table id="vars" class="vars"></table>
+    <div class="panel-title">内存 (栈帧附近, 高亮=本步变化)</div>
+    <div id="mem" class="mem"></div>
+  </section>
+</main>
+
+<script src="js/compiler.js"></script>
+<script src="js/x86.js"></script>
+<script src="js/x64.js"></script>
+<script src="js/arm32.js"></script>
+<script src="js/arm64.js"></script>
+<script src="js/samples.js"></script>
+<script src="js/cpuview.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
